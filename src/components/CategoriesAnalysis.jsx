@@ -21,7 +21,7 @@ const categories = [
 export const CategoriesAnalysis = () => {
   return (
     <section
-      className="py-12 bg-black text-white"
+      className="py-15 bg-black text-white"
       style={{
         backgroundImage: `
           radial-gradient(circle at left center, rgba(59,130,246,0.2), transparent 25%),
@@ -31,15 +31,19 @@ export const CategoriesAnalysis = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-
-      <h1 style={{ fontFamily: 'Ethnocentric', fontSize: '4rem', lineHeight: '1' }} className="bg-gradient-to-r from-purple-500 to-blue-900 bg-clip-text text-transparent text-center mb-10">
-          Top 3 & Bottom 3 <br />
+      <h1
+        style={{
+          fontFamily: "Ethnocentric",
+          fontSize: "clamp(2rem, 5vw, 4rem)",
+          lineHeight: "1",
+        }}
+        className="bg-gradient-to-r from-purple-500 to-blue-900 bg-clip-text text-transparent text-center mb-10"
+      >
+        Top 3 & Bottom 3 <br />
         Categories Analysis
-        </h1>
+      </h1>
 
-      {/* Container responsive width */}
       <div className="w-[90%] sm:w-[85%] lg:w-[80%] mx-auto flex flex-col md:flex-row gap-8 lg:gap-10">
-        {/* Left Card */}
         <div className="flex-1 bg-gray-900 rounded-2xl border-2 border-purple-500 shadow-lg p-6">
           <div className="w-full mb-6">
             <img
@@ -49,7 +53,13 @@ export const CategoriesAnalysis = () => {
             />
           </div>
 
-          <h2 style={{ fontFamily: 'Ethnocentric'}} className="text-base text-gray-300 sm:text-lg md:text-xl py-4 font-bold">
+          <h2
+            style={{
+              fontFamily: "Ethnocentric",
+              fontSize: "clamp(0.8rem, 2.5vw, 1rem)",
+            }}
+            className="text-gray-300 py-6 font-bold"
+          >
             Your Top Traps:
           </h2>
 
@@ -66,10 +76,20 @@ export const CategoriesAnalysis = () => {
                     className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                   />
                   <div>
-                    <h2 className="text-base sm:text-lg md:text-xl font-medium text-white">
+                    <h2
+                      style={{
+                        fontSize: "clamp(0.9rem, 2.2vw, 1.25rem)", // 👈 responsive
+                      }}
+                      className="font-medium text-white"
+                    >
                       {item.title}
                     </h2>
-                    <p className="text-gray-400 text-sm sm:text-base">
+                    <p
+                      style={{
+                        fontSize: "clamp(0.75rem, 2vw, 1rem)", // 👈 responsive
+                      }}
+                      className="text-gray-400"
+                    >
                       {item.subtitle}
                     </p>
                   </div>
@@ -89,11 +109,17 @@ export const CategoriesAnalysis = () => {
             />
           </div>
 
-          <h2 style={{ fontFamily: 'Ethnocentric'}} className="text-base text-gray-300 sm:text-lg md:text-xl py-4 font-bold">
+          <h2
+            style={{
+              fontFamily: "Ethnocentric",
+              fontSize: "clamp(0.8rem, 2.5vw, 1rem)",
+            }}
+            className="text-gray-300 py-6 font-bold"
+          >
             Where Your Most Free:
           </h2>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-10">
             {categories.map((item, index) => (
               <div
                 key={index}
@@ -106,10 +132,20 @@ export const CategoriesAnalysis = () => {
                     className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                   />
                   <div>
-                    <h2 className="text-base sm:text-lg md:text-xl font-medium text-white">
+                    <h2
+                      style={{
+                        fontSize: "clamp(0.9rem, 2.2vw, 1.25rem)",
+                      }}
+                      className="font-medium text-white"
+                    >
                       {item.title}
                     </h2>
-                    <p className="text-gray-400 text-sm sm:text-base">
+                    <p
+                      style={{
+                        fontSize: "clamp(0.75rem, 2vw, 1rem)",
+                      }}
+                      className="text-gray-400"
+                    >
                       {item.subtitle}
                     </p>
                   </div>

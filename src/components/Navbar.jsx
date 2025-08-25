@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import Button from "@/components/Button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,12 +16,10 @@ export default function Navbar() {
         bg-gradient-to-r from-black/50 via-transparent to-black/50 
         border border-purple-800 rounded-lg"
       >
-        {/* Logo */}
         <div className="flex items-center gap-2">
           <Image src="/logo.PNG" alt="Logo" width={80} height={40} />
         </div>
 
-        {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 text-white font-medium">
           <li><Link href="/">Home</Link></li>
           <li><Link href="/about">Hamieverse</Link></li>
@@ -34,50 +33,54 @@ export default function Navbar() {
           <li><Link href="/contact">Merch</Link></li>
         </ul>
 
-        {/* Button (Desktop) */}
         <div className="hidden md:block">
-          <Link
+          <Button
             href="/contact"
-            className="relative inline-block w-[160px] h-[50px] rounded-lg shadow overflow-hidden"
-          >
-            {/* Background Image */}
-            <Image
-              src="/short-button.png"
-              alt="Button BG"
-              fill
-              className="object-cover"
-            />
-            {/* Text Overlay */}
-            <span className="absolute inset-0 flex items-center justify-center text-white font-medium">
-              Buy Now
-            </span>
-          </Link>
+            text="Buy now"
+            img="/short-button.png"
+            width={140}
+            height={50}
+          />
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden flex items-center text-white"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? (
-            <span className="text-3xl">&times;</span> // Close (X)
+            <span className="text-3xl">&times;</span>
           ) : (
-            <span className="text-3xl">&#9776;</span> // Hamburger
+            <span className="text-3xl">&#9776;</span>
           )}
         </button>
       </div>
 
-      {/* Mobile Menu with Animation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="md:hidden text-white shadow-md overflow-hidden"
+            className="fixed top-0 left-0 w-4/4 h-full bg-blue-950 bg-gradient-to-r from-black/90 via-transparent to-black/90 text-white shadow-lg z-50 md:hidden"
           >
-            <ul className="flex flex-col gap-4 px-6 py-6 font-medium">
+
+            <ul className="flex flex-col gap-6 px-6 py-10 font-medium">
+              <div className="flex justify-between items-center px-4 py-2 border border-purple-800 rounded-lg">
+                <div>
+                  <Image src="/logo.PNG" alt="Logo" width={80} height={40} />
+                </div>
+                <button
+                  className="md:hidden flex items-center text-white"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {isOpen ? (
+                    <span className="text-3xl">&times;</span>
+                  ) : (
+                    <span className="text-3xl">&#9776;</span>
+                  )}
+                </button>
+              </div>
               <li><Link href="/" onClick={() => setIsOpen(false)}>Home</Link></li>
               <li><Link href="/about" onClick={() => setIsOpen(false)}>Hamieverse</Link></li>
               <li><Link href="/services" onClick={() => setIsOpen(false)}>Hamie AI</Link></li>
@@ -89,24 +92,13 @@ export default function Navbar() {
               <li><Link href="/contact" onClick={() => setIsOpen(false)}>PPT Maker</Link></li>
               <li><Link href="/contact" onClick={() => setIsOpen(false)}>Merch</Link></li>
 
-              {/* Mobile Button */}
-              <li>
-                <Link
-                  href="/contact"
-                  className="relative inline-block w-[140px] h-[40px] rounded-lg shadow overflow-hidden"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Image
-                    src="/button.PNG"
-                    alt="Button BG"
-                    fill
-                    className="object-cover"
-                  />
-                  <span className="absolute inset-0 flex items-center justify-center text-white font-medium">
-                    Buy Now
-                  </span>
-                </Link>
-              </li>
+              <li><Button
+                href="/"
+                text="Buy now"
+                img="/short-button.png"
+                width={140}
+                height={50}
+              /></li>
             </ul>
           </motion.div>
         )}
