@@ -17,7 +17,7 @@ export default function Navbar() {
         border border-purple-800 rounded-lg"
       >
         <div className="flex items-center gap-2">
-          <Image src="/logo.PNG" alt="Logo" width={80} height={40} />
+          <Image src="/logo.png" alt="Logo" width={80} height={40} />
         </div>
 
         <ul className="hidden md:flex gap-8 text-white font-medium">
@@ -68,7 +68,7 @@ export default function Navbar() {
             <ul className="flex flex-col gap-6 px-6 py-10 font-medium">
               <div className="flex justify-between items-center px-4 py-2 border border-purple-800 rounded-lg">
                 <div>
-                  <Image src="/logo.PNG" alt="Logo" width={80} height={40} />
+                  <Image src="/logo.png" alt="Logo" width={80} height={40} />
                 </div>
                 <button
                   className="md:hidden flex items-center text-white"
