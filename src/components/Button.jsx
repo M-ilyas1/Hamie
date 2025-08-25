@@ -7,7 +7,7 @@ export default function Button({
   href = "/",
   text = "",
   img = "",
-  width = 260,
+  width = 140,
   height = 60,
 }) {
   return (
