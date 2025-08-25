@@ -19,6 +19,18 @@
   }
 }
 
+@font-face {
+  font-family: 'Ethnocentric';
+  src: url('/fonts/Ethnocentric.woff2') format('woff2'),
+       url('/fonts/Ethnocentric.woff') format('woff'),
+       url('/fonts/Ethnocentric.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
 body {
   background: var(--background);
   color: var(--foreground);
