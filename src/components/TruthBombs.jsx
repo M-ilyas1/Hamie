@@ -56,7 +56,6 @@ export const TruthBombs = () => {
         </p>
       </div>
 
-      {/* Story Card */}
       <div
         className="w-[90%] md:w-[70%] mx-auto py-10 px-10 rounded-2xl flex flex-col md:flex-row items-center gap-8 bg-gray-900 border-2 border-purple-800 my-10"
         style={{

@@ -68,7 +68,7 @@ export default function ScoreCard() {
 
                   <div className="w-full bg-gray-700 rounded-full h-2 sm:h-3 overflow-hidden">
                     <div
-                      className="h-full rounded-full transition-all duration-700 bg-gradient-to-r from-blue-900 via-blue-500 to-purple-900"
+                      className="h-full rounded-full transition-all duration-700 bg-gradient-to-r from-red-600 via-yellow-300 to-green-500"
                       style={{ width: item.value }}
                     ></div>
                   </div>
@@ -92,29 +92,35 @@ export default function ScoreCard() {
               }}
             >
               <div
-                className="flex flex-col items-center text-center rounded-xl p-4 sm:p-6"
-                style={{
-                  backgroundImage: "url('/Rectangle.png')",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <img
-                  src="/small-character.png"
-                  alt="Character"
-                  className="w-20 sm:w-28 md:w-36 drop-shadow-2xl mx-auto pb-4"
-                />
-                <h2
-                  style={{
-                    fontFamily: "Ethnocentric",
-                    fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
-                    lineHeight: "1",
-                  }}
-                  className="font-bold text-purple-950"
-                >
-                  The Self Liberator
-                </h2>
-              </div>
+  className="flex flex-col items-center text-center p-4 sm:p-6"
+  style={{
+    backgroundImage: `
+      linear-gradient(to bottom right, rgba(168,85,247,0.6), rgba(59,130,246,0.6)),
+      url('/Rectangle.png')
+    `,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    clipPath: "polygon(55px 0, 100% 0, 100% 100%, 0 100%, 0 50px)", // 👈 cut corner
+    borderRadius: "12px"
+  }}
+>
+  <img
+    src="/small-character.png"
+    alt="Character"
+    className="w-20 sm:w-28 md:w-36 drop-shadow-2xl mx-auto pb-4"
+  />
+  <h2
+    style={{
+      fontFamily: "Ethnocentric",
+      fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
+      lineHeight: "1",
+    }}
+    className="font-medium text-white"
+  >
+    The Self Liberator
+  </h2>
+</div>
+
 
               <div className="space-y-3 p-3 sm:p-4" style={{ fontFamily: "Ethnocentric" }}>
                 {faqs.map((faq, i) => (

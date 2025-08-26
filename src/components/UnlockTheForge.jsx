@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Button from "@/components/Button";
+import { Twitter, Send } from "lucide-react"; // Send icon looks like Telegram
 
 export const UnlockTheForge = () => {
   return (
@@ -130,6 +131,53 @@ export const UnlockTheForge = () => {
             width={240}
             height={50}
           />
+        </div>
+      </div>
+
+
+      <div>
+        <div
+          className="w-[90%] md:w-[70%] mx-auto rounded-2xl flex flex-col md:flex-row justify-between items-center gap-8 bg-gray-900 border-2 border-purple-800 my-10"
+        >
+          <div className="w-[90%] md:w-[60%] text-center md:text-left p-10">
+            <h2
+              style={{
+                fontFamily: "Ethnocentric",
+                fontSize: "clamp(1.5rem, 4vw, 3rem)",
+              }}
+              className="bg-gradient-to-r from-purple-500 to-blue-900 bg-clip-text text-transparent font-bold mb-4"
+            >
+              Join The Community
+            </h2>
+            <p
+              style={{
+                fontSize: "clamp(0.9rem, 2.5vw, 1.3rem)",
+                lineHeight: "1.6",
+              }}
+              className="text-gray-300"
+            >
+              You’ve gotten so good at holding it together, no one realizes you’re
+              unraveling inside. You say I’m fine.
+            </p>
+
+            <div className="flex gap-4 md:justify-start justify-center mt-4">
+              <div className="p-3 rounded-lg flex items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500">
+                <Twitter className="w-6 h-6 text-white" />
+              </div>
+
+              <div className="p-3 rounded-lg flex items-center justify-center bg-gradient-to-r from-purple-500 to-blue-500">
+                <Send className="w-6 h-6 text-white" />
+              </div>
+            </div>
+          </div>
+
+          <div className="w-[100%] md:w-[40%] pt-2 md:pt-10 flex justify-center">
+            <img
+              src="/Hamie_Final.png"
+              alt="Character"
+              className="w-260 drop-shadow-2xl rounded-2xl"
+            />
+          </div>
         </div>
       </div>
     </section>
