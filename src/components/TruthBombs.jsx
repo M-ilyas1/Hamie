@@ -1,4 +1,4 @@
-export const TruthBombs = () => {
+export const TruthBombs = ({ quizData }) => {
   return (
     <section
       className="bg-black text-white py-12"
@@ -23,37 +23,55 @@ export const TruthBombs = () => {
         Truth Bombs
       </h1>
 
-      {/* Quote Card */}
-      <div
-        className="w-[90%] md:w-[70%] mx-auto py-10 px-6 rounded-2xl text-center bg-gray-900 border-2 border-purple-800"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at left center, rgba(59,130,246,0.2), transparent 25%),
-            radial-gradient(circle at right center, rgba(59,130,246,0.2), transparent 25%)
-          `,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <h2
+      {/* Truth Bombs */}
+      <div className="w-[90%] md:w-[70%] mx-auto">
+        <div
+          className="py-10 px-6 rounded-2xl text-center bg-gray-900 border-2 border-purple-800"
           style={{
-            fontSize: "clamp(1.2rem, 3vw, 1.9rem)",
+            backgroundImage: `
+              radial-gradient(circle at left center, rgba(59,130,246,0.2), transparent 25%),
+              radial-gradient(circle at right center, rgba(59,130,246,0.2), transparent 25%)
+            `,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
           }}
-          className="font-semibold mb-6"
         >
-          Emotional Suppression + Career Conformity = 16
-        </h2>
-        <span className="text-4xl">"</span>
-        <p
-          style={{
-            fontFamily: "Ethnocentric",
-            fontSize: "clamp(1rem, 4vw, 1.8rem)",
-            lineHeight: "1.3",
-          }}
-          className="bg-gradient-to-r from-purple-500 to-blue-900 bg-clip-text text-transparent text-center"
-        >
-          You've normalized silence, but your truth <br /> is screaming underneath
-        </p>
+          <h2
+            style={{
+              fontSize: "clamp(1.2rem, 3vw, 1.9rem)",
+            }}
+            className="font-semibold mb-6"
+          >
+            {quizData?.personalizedOneLiner || "Emotional Suppression + Career Conformity = 16"}
+          </h2>
+          <span className="text-4xl">&ldquo;</span>
+          <div className="space-y-4">
+            {quizData?.truthBombs?.slice(0, 3).map((truthBomb, index) => (
+              <p
+                key={index}
+                style={{
+                  fontFamily: "Ethnocentric",
+                  fontSize: "clamp(1rem, 4vw, 1.8rem)",
+                  lineHeight: "1.3",
+                }}
+                className="bg-gradient-to-r from-purple-500 to-blue-900 bg-clip-text text-transparent text-center"
+              >
+                {truthBomb.text}
+              </p>
+            )) || (
+              <p
+                style={{
+                  fontFamily: "Ethnocentric",
+                  fontSize: "clamp(1rem, 4vw, 1.8rem)",
+                  lineHeight: "1.3",
+                }}
+                className="bg-gradient-to-r from-purple-500 to-blue-900 bg-clip-text text-transparent text-center"
+              >
+                You've normalized silence, but your truth is screaming underneath
+              </p>
+            )}
+          </div>
+        </div>
       </div>
 
       <div
@@ -84,10 +102,7 @@ export const TruthBombs = () => {
             }}
             className="text-gray-300"
           >
-            You’ve gotten so good at holding it together, no one realizes you’re
-            unraveling inside. You say “I’m fine” so often you’ve started to
-            believe it—but the version of you behind that smile is begging to be
-            seen.
+            {quizData?.topTrapPersonalStory || "You've gotten so good at holding it together, no one realizes you're unraveling inside. You say \"I'm fine\" so often you've started to believe it—but the version of you behind that smile is begging to be seen."}
           </p>
         </div>
 

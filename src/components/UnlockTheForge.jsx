@@ -3,7 +3,9 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import { Twitter, Send } from "lucide-react"; // Send icon looks like Telegram
 
-export const UnlockTheForge = () => {
+export const UnlockTheForge = ({ quizData }) => {
+  console.log('UnlockTheForge component received quizData:', quizData); // Debug log
+  console.log('NextSteps data:', quizData?.nextSteps); // Debug log
   return (
     <section
       className="bg-black text-white py-15 px-4"
@@ -50,7 +52,7 @@ export const UnlockTheForge = () => {
               }}
               className="font-bold mb-3"
             >
-              Emotional Suppression + Career Conformity = 16
+              INTERNAL CHALLENGE:
             </h2>
             <p
               style={{
@@ -58,8 +60,7 @@ export const UnlockTheForge = () => {
               }}
               className="text-gray-300 leading-relaxed"
             >
-              You've normalized silence, but your truth <br /> is screaming
-              underneath.
+              {quizData?.nextSteps?.internalChallenge || "You've normalized silence, but your truth is screaming underneath."}
             </p>
           </div>
         </div>
@@ -86,7 +87,7 @@ export const UnlockTheForge = () => {
               }}
               className="font-bold mb-3"
             >
-              C Emotional Suppression + Career Conformity = 16
+              EXTERNAL CHALLENGE:
             </h2>
             <p
               style={{
@@ -94,8 +95,7 @@ export const UnlockTheForge = () => {
               }}
               className="text-gray-300 leading-relaxed"
             >
-              You've normalized silence, but your truth <br /> is screaming
-              underneath.
+              {quizData?.nextSteps?.externalChallenge || "You've normalized silence, but your truth is screaming underneath."}
             </p>
           </div>
         </div>
@@ -118,10 +118,7 @@ export const UnlockTheForge = () => {
           }}
           className="text-gray-300 mb-8 leading-relaxed"
         >
-          This wasn’t a personality test. It was a mirror. Now you know where
-          you’re trapped. Now you see the system.{" "}
-          <br className="hidden sm:block" />
-          And now—you get to decide what to do about it.
+          {quizData?.tierSummary || "This wasn't a personality test. It was a mirror. Now you know where you're trapped. Now you see the system. And now—you get to decide what to do about it."}
         </p>
         <div>
           <Button
@@ -133,6 +130,8 @@ export const UnlockTheForge = () => {
           />
         </div>
       </div>
+
+
 
 
       <div>
@@ -156,8 +155,8 @@ export const UnlockTheForge = () => {
               }}
               className="text-gray-300"
             >
-              You’ve gotten so good at holding it together, no one realizes you’re
-              unraveling inside. You say I’m fine.
+              You've gotten so good at holding it together, no one realizes you're
+              unraveling inside. You say I'm fine.
             </p>
 
             <div className="flex gap-4 md:justify-start justify-center mt-4">

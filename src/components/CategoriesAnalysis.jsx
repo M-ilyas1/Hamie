@@ -1,24 +1,98 @@
 import React from "react";
 
-const categories = [
-  {
-    icon: "/icons/lock.png",
-    title: "Toxic Relationships",
-    subtitle: "Surrounded by people who hold you back.",
-  },
-  {
-    icon: "/icons/unemployment.png",
-    title: "Career Conformity",
-    subtitle: "You’re working someone else’s dream—and your soul knows it.",
-  },
-  {
-    icon: "/icons/fear.png",
-    title: "Lack of Focus",
-    subtitle: "Too many distractions, no clarity.",
-  },
-];
+// Icon mapping for categories
+const iconMap = {
+  "Career Conformity": "/icons/unemployment.png",
+  "Financial Fragility": "/icons/financial-loss.png",
+  "Mental Conditioning": "/icons/minds.png",
+  "Media Addiction": "/icons/social-media-addiction.png",
+  "Social Environment": "/icons/social-circle.png",
+  "Emotional Suppression": "/icons/motional.png",
+  "Body-Mind Disconnection": "/icons/minds.png",
+  "Cultural Conditioning": "/icons/culture.png",
+  "Fear of Visibility": "/icons/fear.png",
+  "Loss of Purpose / Creativity": "/icons/idiot.png"
+};
 
-export const CategoriesAnalysis = () => {
+// Convert API data to categories format for top traps
+const getTopTrapsFromAPI = (quizData) => {
+  if (!quizData?.top3Bottom3CategoriesAnalysis) {
+    return [
+      {
+        icon: "/icons/lock.png",
+        title: "Toxic Relationships",
+        subtitle: "Surrounded by people who hold you back.",
+      },
+      {
+        icon: "/icons/unemployment.png",
+        title: "Career Conformity",
+        subtitle: "You're working someone else's dream—and your soul knows it.",
+      },
+      {
+        icon: "/icons/fear.png",
+        title: "Lack of Focus",
+        subtitle: "Too many distractions, no clarity.",
+      },
+    ];
+  }
+
+  // Parse top traps from API data
+  const topTraps = quizData.top3Bottom3CategoriesAnalysis.topTraps.map(trap => {
+    const match = trap.match(/• (.+): (.+)/);
+    if (match) {
+      const [, title, subtitle] = match;
+      return {
+        icon: iconMap[title] || "/icons/culture.png",
+        title: title,
+        subtitle: subtitle,
+      };
+    }
+    return null;
+  }).filter(Boolean);
+
+  return topTraps;
+};
+
+// Convert API data to categories format for most free
+const getMostFreeFromAPI = (quizData) => {
+  if (!quizData?.top3Bottom3CategoriesAnalysis) {
+    return [
+      {
+        icon: "/icons/culture.png",
+        title: "Creative Expression",
+        subtitle: "You're living authentically and creatively.",
+      },
+      {
+        icon: "/icons/minds.png",
+        title: "Mental Freedom",
+        subtitle: "Your mind is clear and unburdened.",
+      },
+      {
+        icon: "/icons/motional.png",
+        title: "Emotional Balance",
+        subtitle: "You're emotionally healthy and balanced.",
+      },
+    ];
+  }
+
+  // Parse most free from API data
+  const mostFree = quizData.top3Bottom3CategoriesAnalysis.mostFree.map(item => {
+    const match = item.match(/• (.+): (.+)/);
+    if (match) {
+      const [, title, subtitle] = match;
+      return {
+        icon: iconMap[title] || "/icons/culture.png",
+        title: title,
+        subtitle: subtitle,
+      };
+    }
+    return null;
+  }).filter(Boolean);
+
+  return mostFree;
+};
+
+export const CategoriesAnalysis = ({ quizData }) => {
   return (
     <section
       className="py-15 bg-black text-white"
@@ -64,7 +138,7 @@ export const CategoriesAnalysis = () => {
           </h2>
 
           <div className="flex flex-col gap-6">
-            {categories.map((item, index) => (
+            {getTopTrapsFromAPI(quizData).map((item, index) => (
               <div
                 key={index}
                 className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 border-b border-gray-700 pb-3 last:border-b-0"
@@ -120,7 +194,7 @@ export const CategoriesAnalysis = () => {
           </h2>
 
           <div className="flex flex-col gap-10">
-            {categories.map((item, index) => (
+            {getMostFreeFromAPI(quizData).map((item, index) => (
               <div
                 key={index}
                 className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 border-b border-gray-700 pb-3 last:border-b-0"

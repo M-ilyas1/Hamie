@@ -1,11 +1,57 @@
 import Image from "next/image";
 
-export const Category = () => {
-  const categories = [
+export const Category = ({ quizData }) => {
+  console.log('Category component received quizData:', quizData);
+  
+  const getScoreColor = (score) => {
+    const numericScore = parseFloat(score.split('/')[0]);
+    if (numericScore >= 8) return 'text-green-400';
+    if (numericScore >= 6) return 'text-yellow-400';
+    if (numericScore >= 4) return 'text-orange-400';
+    return 'text-red-400';
+  };
+
+  const getDotColor = (score) => {
+    const numericScore = parseFloat(score.split('/')[0]);
+    if (numericScore >= 8) return 'bg-green-400';
+    if (numericScore >= 6) return 'bg-yellow-400';
+    if (numericScore >= 4) return 'bg-orange-400';
+    return 'bg-red-400';
+  };
+
+  const formatScore = (score) => {
+    const [numerator, denominator] = score.split('/');
+    const formattedNumerator = numerator.padStart(2, '0');
+    return `${formattedNumerator}/${denominator}`;
+  };
+
+  const iconMap = {
+    "Career Conformity": "/icons/unemployment.png",
+    "Financial Fragility": "/icons/financial-loss.png",
+    "Mental Conditioning": "/icons/lock.png",
+    "Media Addiction": "/icons/social-media-addiction.png",
+    "Social Environment": "/icons/social-circle.png",
+    "Emotional Suppression": "/icons/motional.png",
+    "Body-Mind Disconnection": "/icons/minds.png",
+    "Cultural Conditioning": "/icons/culture.png",
+    "Fear of Visibility": "/icons/fear.png",
+    "Loss of Purpose / Creativity": "/icons/idiot.png"
+  };
+
+  // Convert API data to categories format
+  const categories = quizData?.categoryScores ? Object.entries(quizData.categoryScores).map(([category, data]) => {
+    console.log(`Processing category: ${category}`, data); // Debug log
+    return {
+      icon: iconMap[category] || "/icons/culture.png",
+      title: category,
+      subtitle: data.categoryDefinition,
+      score: formatScore(data.score),
+    };
+  }) : [
     {
       icon: "/icons/unemployment.png",
       title: "Career Conformity",
-      subtitle: "You’re working someone else’s dream—and your soul knows it.",
+      subtitle: "You're working someone else's dream—and your soul knows it.",
       score: "05/10",
     },
     {
@@ -23,7 +69,7 @@ export const Category = () => {
     {
       icon: "/icons/social-circle.png",
       title: "Health Neglect",
-      subtitle: "Ignoring your body’s warning signals.",
+      subtitle: "Ignoring your body's warning signals.",
       score: "07/10",
     },
     {
@@ -41,7 +87,7 @@ export const Category = () => {
     {
       icon: "/icons/culture.png",
       title: "Lost Identity",
-      subtitle: "You’re living by labels, not truth.",
+      subtitle: "You're living by labels, not truth.",
       score: "03/10",
     },
     {
@@ -125,13 +171,14 @@ export const Category = () => {
                   </div>
                 </div>
 
-                <div className="sm:ml-auto">
+                <div className="sm:ml-auto flex items-center gap-2">
+                  <div className={`w-3 h-3 rounded-full ${getDotColor(item.score)}`}></div>
                   <span
                     style={{
                       fontFamily: "Ethnocentric",
                       fontSize: "clamp(1rem, 2.5vw, 1rem)", 
                     }}
-                    className="text-yellow-400 font-light"
+                    className={`${getScoreColor(item.score)} font-light`}
                   >
                     {item.score}
                   </span>

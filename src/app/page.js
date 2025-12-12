@@ -1,22 +1,19 @@
-import HeroSection from "@/components/HeroSection";
-import Result from "@/components/Result";
-import ScoreCard from "@/components/ScoreCard";
-import {Category} from "@/components/Category";
-import {CategoriesAnalysis} from "@/components/CategoriesAnalysis";
-import {TruthBombs} from "@/components/TruthBombs";
-import {UnlockTheForge} from "@/components/UnlockTheForge";
+import HeroSectionHome from '@/components/HeroSection-Home'
+import WhyTakeQuiz from '@/components/WhyTakeQuiz'
+import WhatsHamie from '@/components/WhatsHamie'
+import PathThroughHamie from '@/components/PathThroughHamie'
+import HamieTopics from '@/components/HamieTopics'
+import TheHamie13 from '@/components/TheHamie13'
 
 export default function Home() {
   return (
     <main>
-      <HeroSection />
-      <Result />
-      <ScoreCard />
-      <Category />
-      <CategoriesAnalysis />
-      <TruthBombs />
-      <UnlockTheForge />
-
+      <HeroSectionHome/>
+      <WhyTakeQuiz/>
+      <WhatsHamie/>
+      <PathThroughHamie/>
+      <HamieTopics/>
+      <TheHamie13/>
     </main>
   );
 }
